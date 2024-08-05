@@ -9,7 +9,11 @@
   - 键盘
   - 鼠标
   - 笔
-  - 水杯
+  - 水杯   
+
+
+
+  
 - [桌面场景手部识别（detect）数据集](https://www.123pan.com/s/SJYZVv-ZZrQ.html)
   包含以下两个常见手势：
   - 无手势
