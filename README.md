@@ -11,12 +11,13 @@
   - 笔
   - 水杯   
 
-
+![这是图片](https://github.com/Floatkyun/Ultra-Lamp/blob/main/image/labels_obj.jpg)
 
   
 - [桌面场景手部识别（detect）数据集](https://www.123pan.com/s/SJYZVv-ZZrQ.html)
   包含以下两个常见手势：
   - 无手势
   - OK手势
+![这是图片](https://github.com/Floatkyun/Ultra-Lamp/blob/main/image/labels_hand.jpg)
 
 核心代码和大致方案评审结束后更新
