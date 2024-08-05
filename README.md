@@ -9,8 +9,7 @@
   - 键盘
   - 鼠标
   - 笔
-  - 水杯   
-
+  - 水杯
 ![这是图片](https://github.com/Floatkyun/Ultra-Lamp/blob/main/image/labels_obj.jpg)
 
   
