@@ -1,0 +1,97 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.27.1.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: zy z, nju, LIC=32B1Q-N9PQE-EVP1R-KB1LQ-FJ8C0-W76N1
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.27.1.0
+Toolchain Path:  D:\liulanqi\keil\core\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.12
+Assembler:       Armasm.exe V6.12
+Linker/Locator:  ArmLink.exe V6.12
+Library Manager: ArmAr.exe V6.12
+Hex Converter:   FromElf.exe V6.12
+CPU DLL:         SARMCM3.DLL V5.27.1.0
+Dialog DLL:      DCM.DLL V1.17.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.6.0
+Dialog DLL:      TCM.DLL V1.36.1.0
+ 
+<h2>Project:</h2>
+E:\qq_file\3295452317\FileRecv\STM32F407+lvgl_lastest_71 (4)\PWM\MDK-ARM\PWM.uvprojx
+Project File Date:  07/01/2024
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.12', folder: 'D:\liulanqi\keil\core\ARM\ARMCLANG\Bin'
+Build target 'PWM'
+../Middlewares/LVGL/generated/events_init.c(53): warning: passing 'char [13]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
+                HAL_UART_Transmit(&huart2,"guard_start\n",sizeof("guard_start\n"),1000);
+                                          ^~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_uart.h(745): note: passing argument to parameter 'pData' here
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                                                                              ^
+../Middlewares/LVGL/generated/events_init.c(139): warning: passing 'char [12]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
+                        HAL_UART_Transmit(&huart2,"chat_start\n",sizeof("chat_start\n"),10000);
+                                                  ^~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_uart.h(745): note: passing argument to parameter 'pData' here
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                                                                              ^
+../Middlewares/LVGL/generated/events_init.c(147): warning: passing 'char [11]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
+                        HAL_UART_Transmit(&huart2,"chat_stop\n",sizeof("chat_stop\n"),10000);
+                                                  ^~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_uart.h(745): note: passing argument to parameter 'pData' here
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                                                                              ^
+../Middlewares/LVGL/generated/events_init.c(187): warning: passing 'char [21]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
+                        HAL_UART_Transmit(&huart2,"work_detector_start\n",sizeof("demo_work_detector_start\n"),10000);//Demo
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_uart.h(745): note: passing argument to parameter 'pData' here
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                                                                              ^
+../Middlewares/LVGL/generated/events_init.c(189): warning: passing 'char [21]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
+                        HAL_UART_Transmit(&huart2,"work_detector_start\n",sizeof("actual_work_detector_start\n"),10000);//Actual        
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_uart.h(745): note: passing argument to parameter 'pData' here
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                                                                              ^
+../Middlewares/LVGL/generated/events_init.c(375): warning: passing 'char [12]' to parameter of type 'const uint8_t *' (aka 'const unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
+                HAL_UART_Transmit(&huart2,"guard_stop\n",sizeof("guard_stop\n"),1000);
+                                          ^~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_uart.h(745): note: passing argument to parameter 'pData' here
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+                                                                              ^
+6 warnings generated.
+compiling events_init.c...
+linking...
+Program Size: Code=297800 RO-data=344260 RW-data=4292 ZI-data=106948  
+FromELF: creating hex file...
+"PWM\PWM.axf" - 0 Error(s), 6 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.5.1.pack
+                ARM.CMSIS.5.5.1
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.2.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
+                Keil.STM32F4xx_DFP.2.15.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_PWM
+  D:\liulanqi\keil\pack\ARM\CMSIS\5.5.1\CMSIS\Core\Include
+  D:\liulanqi\keil\pack\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.2.0
+Build Time Elapsed:  00:00:05
+</pre>
+</body>
+</html>

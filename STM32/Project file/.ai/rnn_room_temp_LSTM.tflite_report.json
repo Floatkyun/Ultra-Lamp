@@ -1,0 +1,199 @@
+{
+    "_allocate_inputs": 4,
+    "_allocate_outputs": 4,
+    "cli_parameters": "analyze --target stm32f4 --name rnn -m D:/STM32_Competition/RNN_timeseq/room_temp_LSTM.tflite --compression none --verbosity 1 --allocate-inputs --allocate-outputs --workspace C:/Users/hp/AppData/Local/Temp/mxAI_workspace20206090010120017696877812627042167 --output C:/Users/hp/.stm32cubemx/network_output",
+    "cli_version": {
+        "extra": "19802",
+        "major": 9,
+        "micro": 0,
+        "minor": 0
+    },
+    "cli_version_str": "9.0.0-19802",
+    "code_size": 0,
+    "compression": [],
+    "date_time": "Sat May 18 15:58:53 2024",
+    "error": 0,
+    "error_str": [],
+    "exec_cmd": "analyze",
+    "exec_duration": 0.0,
+    "hash": "0x9eaed36d91fc18ad9387a660c1d21d58",
+    "inputs": [
+        "serving_default_x0"
+    ],
+    "layers": [
+        {
+            "c_id": [
+                0
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 24,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1,
+                        6
+                    ]
+                },
+                "rom_size": 60240
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "serving_default_x0",
+            "original": "",
+            "type": "Input"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 89640,
+                "n_params": 15060,
+                "psize": 60240,
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [
+                "serving_default_x0"
+            ],
+            "name": "lstm_0",
+            "original": "UNIDIRECTIONAL_SEQUENCE_LSTM",
+            "type": "LSTM"
+        },
+        {
+            "c_id": [
+                1
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "lstm_0"
+            ],
+            "name": "slice_1",
+            "original": "STRIDED_SLICE",
+            "type": "Slice"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "slice_1"
+            ],
+            "name": "reshape_1_reshape",
+            "original": "STRIDED_SLICE",
+            "type": "Reshape"
+        },
+        {
+            "c_id": [
+                2
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 60,
+                "psize": 240,
+                "rom_size": 244
+            },
+            "id": 2,
+            "inputs": [],
+            "name": "sequential_5_output_MatMul",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 1,
+                "psize": 4,
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [],
+            "name": "sequential_5_output_BiasAdd_ReadVariableOp",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 61,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 4,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [
+                "reshape_1_reshape",
+                "sequential_5_output_MatMul",
+                "sequential_5_output_BiasAdd_ReadVariableOp"
+            ],
+            "name": "gemm_2",
+            "original": "FULLY_CONNECTED",
+            "type": "Gemm"
+        }
+    ],
+    "model_files": [
+        "D:\\STM32_Competition\\RNN_timeseq\\room_temp_LSTM.tflite"
+    ],
+    "model_n_params": 15121,
+    "model_name": "room_temp_LSTM",
+    "model_size": 60484,
+    "model_type": "tflite",
+    "name": "rnn",
+    "outputs": [
+        "gemm_2"
+    ],
+    "ram_io_size": [
+        0,
+        0
+    ],
+    "ram_size": 3144,
+    "report_version": 1.1,
+    "rom_cfact": 1.0,
+    "rom_heap_inspector": 2048,
+    "rom_inputs": [
+        {
+            "c_size": 24,
+            "c_type": "float",
+            "name": "serving_default_x0"
+        }
+    ],
+    "rom_n_macc": 89701,
+    "rom_outputs": [
+        {
+            "c_size": 4,
+            "c_type": "float",
+            "name": "gemm_2"
+        }
+    ],
+    "rom_size": 60488,
+    "strategy": "",
+    "tools_api_version": "9.0.0-19802",
+    "tools_version": "9.0.0-19802",
+    "val_error": -1.0,
+    "val_error_desc": "None (None) #-1",
+    "val_metrics": []
+}

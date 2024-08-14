@@ -1,0 +1,137 @@
+STEdgeAI Core v9.0.0-19802
+Created date          : 2024-06-09 21:56:42
+Parameters            : generate --target stm32f4 --name room_temp_rnn -m D:/liulanqi/Ultra_Lamp-main-new-ai/Ultra_Lamp-main/RNN_FCN/room_temp_LSTM.tflite --compression none --verbosity 1 --allocate-inputs --allocate-outputs --workspace C:/Users/ADMINI~1/AppData/Local/Temp/mxAI_workspace3213773579780016436573379878778529 --output C:/Users/Administrator/.stm32cubemx/room_temp_rnn_output
+
+Exec/report summary (generate)
+---------------------------------------------------------------------------------------------------------------
+model file         :   D:\liulanqi\Ultra_Lamp-main-new-ai\Ultra_Lamp-main\RNN_FCN\room_temp_LSTM.tflite        
+type               :   tflite                                                                                  
+c_name             :   room_temp_rnn                                                                           
+compression        :   none                                                                                    
+options            :   allocate-inputs, allocate-outputs                                                       
+optimization       :   balanced                                                                                
+target/series      :   stm32f4                                                                                 
+workspace dir      :   C:\Users\ADMINI~1\AppData\Local\Temp\mxAI_workspace3213773579780016436573379878778529   
+output dir         :   C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output                                
+model_fmt          :   float                                                                                   
+model_name         :   room_temp_LSTM                                                                          
+model_hash         :   0x9eaed36d91fc18ad9387a660c1d21d58                                                      
+params #           :   15,121 items (59.07 KiB)                                                                
+---------------------------------------------------------------------------------------------------------------
+input 1/1          :   'serving_default_x0', f32(1x6x1), 24 Bytes, activations                                 
+output 1/1         :   'gemm_2', f32(1x1), 4 Bytes, activations                                                
+macc               :   89,701                                                                                  
+weights (ro)       :   60,488 B (59.07 KiB) (1 segment) / +4(+0.0%) vs float model                             
+activations (rw)   :   3,144 B (3.07 KiB) (1 segment) *                                                        
+ram (total)        :   3,144 B (3.07 KiB) = 3,144 + 0 + 0                                                      
+---------------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers can be used from the activations buffer
+
+Model name - room_temp_LSTM
+------ ------------------------------------------------------------ ---------------- --------------- -------- -------------------------------------------- --- ------------------ ------------------ -------------- 
+m_id   layer (type,original)                                        oshape           param/size          macc                                 connected to   | c_size             c_macc             c_type         
+------ ------------------------------------------------------------ ---------------- --------------- -------- -------------------------------------------- --- ------------------ ------------------ -------------- 
+0      serving_default_x0 (Input, )                                 [b:1,h:6,c:1]                                                                            | +60,240(+100.0%)   +89,640(+100.0%)   LSTM_[0]       
+       lstm_0 (LSTM, UNIDIRECTIONAL_SEQUENCE_LSTM)                  [b:1,h:6,c:60]   15,060/60,240     89,640                           serving_default_x0   | -60,240(-100.0%)   -89,640(-100.0%)   
+------ ------------------------------------------------------------ ---------------- --------------- -------- -------------------------------------------- --- ------------------ ------------------ -------------- 
+1      slice_1 (Slice, STRIDED_SLICE)                               [b:1,h:1,c:60]                                                                  lstm_0   |                                       Gather_[1]     
+       reshape_1_reshape (Reshape, STRIDED_SLICE)                   [b:1,c:60]                                                                     slice_1   |                                       
+------ ------------------------------------------------------------ ---------------- --------------- -------- -------------------------------------------- --- ------------------ ------------------ -------------- 
+2      sequential_5_output_MatMul (Placeholder, )                   [b:1,c:60]       60/240                                                                  | +4(+1.7%)          +61(+100.0%)       Dense_[o][2]   
+       sequential_5_output_BiasAdd_ReadVariableOp (Placeholder, )   [c:1]            1/4                                                                     | -4(-100.0%)                           
+       gemm_2 (Gemm, FULLY_CONNECTED)                               [b:1,c:1]                              61                            reshape_1_reshape   |                    -61(-100.0%)       
+                                                                                                                                sequential_5_output_MatMul   | 
+                                                                                                                sequential_5_output_BiasAdd_ReadVariableOp   | 
+------ ------------------------------------------------------------ ---------------- --------------- -------- -------------------------------------------- --- ------------------ ------------------ -------------- 
+model/c-model: macc=89,701/89,701  weights=60,484/60,488 +4(+0.0%) activations=--/3,144 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : room_temp_LSTM
+c-name                : room_temp_rnn
+c-node #              : 3
+c-array #             : 12
+activations size      : 3144 (1 segment)
+weights size          : 60488 (1 segment)
+macc                  : 89701
+inputs                : ['serving_default_x0_output']
+outputs               : ['gemm_2_output']
+
+C-Arrays (12)
+------ ------------------------------ ------------- ------------------------- ------------- --------- 
+c_id   name (*_array)                 item/size     domain/mem-pool           c-type        comment   
+------ ------------------------------ ------------- ------------------------- ------------- --------- 
+0      gemm_2_bias                    1/4           weights/weights           const float             
+1      gemm_2_output                  1/4           activations/**default**   float         /output   
+2      gemm_2_weights                 60/240        weights/weights           const float             
+3      lstm_0_bias                    240/960       weights/weights           const float             
+4      lstm_0_kernel                  240/960       weights/weights           const float             
+5      lstm_0_output0                 360/1440      activations/**default**   float                   
+6      lstm_0_peephole                180/720       weights/weights           const float             
+7      lstm_0_recurrent               14400/57600   weights/weights           const float             
+8      lstm_0_scratch0                420/1680      activations/**default**   float                   
+9      serving_default_x0_output      6/24          activations/**default**   float         /input    
+10     slice_1_gather_0_output        60/240        activations/**default**   float                   
+11     slice_1_gather_0_placeholder   1/4           weights/weights           const s32               
+------ ------------------------------ ------------- ------------------------- ------------- --------- 
+
+C-Layers (3)
+------ ------------------ ---- ------------ ------- ------- ------------------------------ ------------------ 
+c_id   name (*_layer)     id   layer_type   macc    rom     tensors                        shape (array id)   
+------ ------------------ ---- ------------ ------- ------- ------------------------------ ------------------ 
+0      lstm_0             0    LSTM         89640   60240   I: serving_default_x0_output   f32(1x6x1) (9)     
+                                                            S: lstm_0_scratch0                                
+                                                            W: lstm_0_kernel               f32(240x1) (4)     
+                                                            W: lstm_0_recurrent            f32(240x60) (7)    
+                                                            W: lstm_0_peephole             f32(180x1) (6)     
+                                                            W: lstm_0_bias                 f32(240) (3)       
+                                                            O: lstm_0_output0              f32(1x6x60) (5)    
+------ ------------------ ---- ------------ ------- ------- ------------------------------ ------------------ 
+1      slice_1_gather_0   1    Gather       0       0       I: lstm_0_output0              f32(1x6x60) (5)    
+                                                            O: slice_1_gather_0_output     f32(1x1x60) (10)   
+------ ------------------ ---- ------------ ------- ------- ------------------------------ ------------------ 
+2      gemm_2             2    Dense        61      244     I: slice_1_gather_0_output     f32(1x1x60) (10)   
+                                                            W: gemm_2_weights              f32(1x60) (2)      
+                                                            W: gemm_2_bias                 f32(1) (0)         
+                                                            O: gemm_2_output               f32(1x1) (1)       
+------ ------------------ ---- ------------ ------- ------- ------------------------------ ------------------ 
+
+
+
+Number of operations per c-layer
+------- ------ --------------------------- -------- -------------- 
+c_id    m_id   name (type)                      #op           type 
+------- ------ --------------------------- -------- -------------- 
+0       0      lstm_0 (LSTM)                 89,640   smul_f32_f32 
+1       1      slice_1_gather_0 (Gather)          0   smul_f32_f32 
+2       2      gemm_2 (Dense)                    61   smul_f32_f32 
+------- ------ --------------------------- -------- -------------- 
+total                                        89,701 
+
+Number of operation types
+---------------- -------- ----------- 
+operation type          #           % 
+---------------- -------- ----------- 
+smul_f32_f32       89,701      100.0% 
+
+Complexity report (model)
+------ ---------------------------- ------------------------- ------------------------- ------ 
+m_id   name                         c_macc                    c_rom                     c_id   
+------ ---------------------------- ------------------------- ------------------------- ------ 
+0      serving_default_x0           ||||||||||||||||  99.9%   ||||||||||||||||  99.6%   [0]    
+1      slice_1                      |                  0.0%   |                  0.0%   [1]    
+2      sequential_5_output_MatMul   |                  0.1%   |                  0.4%   [2]    
+------ ---------------------------- ------------------------- ------------------------- ------ 
+macc=89,701 weights=60,488 act=3,144 ram_io=0
+
+Generated files (7)
+-------------------------------------------------------------------------------------- 
+C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output\room_temp_rnn_data_params.h   
+C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output\room_temp_rnn_data_params.c   
+C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output\room_temp_rnn_data.h          
+C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output\room_temp_rnn_data.c          
+C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output\room_temp_rnn_config.h        
+C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output\room_temp_rnn.h               
+C:\Users\Administrator\.stm32cubemx\room_temp_rnn_output\room_temp_rnn.c               
