@@ -1,4 +1,3 @@
-# Ultra-Lamp  
 ![这是图片](https://github.com/Floatkyun/Ultra-Lamp/blob/main/image/UltraLamp.jpeg)  
 ## 1 简介   
 ### 1.1 项目简介 
